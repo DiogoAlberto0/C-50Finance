@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block main %}
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Ação</th>
+            <th scope="col">Quantidade</th>
+            <th scope="col">Data</th>
+            <th scope="col">Hora</th>
+            <th scope="col">Operation</th>
+            <th scope="col">Preço total</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for transaction in history %}
+            <tr
+            {% if transaction.operation == 'buy' %}
+                class="table-success"
+            {% else %}
+                class="table-danger"
+            {% endif %}
+            >
+                <th scope="row">{{transaction.symbol}}</th>
+                <td >{{transaction.shares}}</td>
+                <td >{{transaction.day}}/{{transaction.month}}/{{transaction.year}}</td>
+                <td >{{transaction.hour}}:{{transaction.minute}}</td>
+                <td >{{transaction.operation}}</td>
+                <td >{{transaction.total_price}}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Log In
+{% endblock %}
+
+{% block main %}
+    <h1>Ações</h1>
+
+    <table class="table">
+        <thead class="table table-dark">
+          <tr>
+            
+            <th scope="col">Nome</th>
+            <th scope="col">Quantidade</th>
+            <th scope="col">Valor Atual</th>
+            <th scope="col">Valor Total</th>
+          </tr>
+        </thead>
+        <tbody class="table table-dark">
+            {% for symbol, shares in portifolio.items() %}
+            <tr> 
+                <th>{{ symbol }}</th>
+                <td>{{ shares.qtde }}</td>
+                <td>{{ shares.current_price }}</td>
+                <td>{{ shares.total_price }}</td>
+              </tr>
+    
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr class="w-full table table-primary">
+                <th>Saldo atual: </th>
+                <td>{{ cash }}</td>
+            </tr>
+            <tr class="w-full table table-success">
+                <th>Total geral: </th>
+                <td>{{ general_total }}</td>
+            </tr>
+        </tfoot>
+      </table>
+{% endblock %}
